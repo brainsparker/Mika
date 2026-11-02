@@ -115,9 +115,11 @@ fun toolDispatcher(
     selfConfig: com.wangzan101.mika.core.settings.SelfConfig? = null,
     /** 存下的运行记录;给了、而这个对话之前有记过运行的轮次时提供 history_read(查之前几轮读到的东西)。 */
     runRecords: RunRecords? = null,
+    /** 网页搜索服务(比如 [com.wangzan101.mika.core.search.YouSearch]);为空时不提供 web_search。 */
+    webSearch: com.wangzan101.mika.core.search.WebSearch? = null,
 ): ToolDispatcher {
     val config = ToolConfig(visionEnabled, skills, recordFrames, vision, inlineScreen, adaptiveVision, memory, profile, utterances, conversationId,
-        imageOps, scheduleTrigger, scheduleAdmin, runSpec, childHost, userScreens, personalSkills, selfConfig, runRecords)
+        imageOps, scheduleTrigger, scheduleAdmin, runSpec, childHost, userScreens, personalSkills, selfConfig, runRecords, webSearch)
     val providers: List<CapabilityProvider> = listOf(
         object : CapabilityProvider {
             override val id = PHONE

@@ -770,6 +770,8 @@ class TaskRun(
                 personalSkills = memoryRuntime.skills(),
                 // 这个对话之前几轮的运行记录(只读;history_read 只认 runSpec 里这个对话的轮次)
                 runRecords = RunStore(service).reader(),
+                // 内置网页搜索(You.com,不用 Key;设置里关掉时不提供,照旧用浏览器搜)
+                webSearch = if (FeatureFlags.get(service).webSearch()) webSearchService else null,
                 mcpServers = mcpEndpoints())
             dispatcher = tools
             val agent = AgentLoop(
@@ -1232,5 +1234,7 @@ class TaskRun(
         val NO_PHONE_HELPER_USB: String get() = tr(R.string.task_no_phone_helper_usb)
         val NO_ACCESSIBILITY: String get() = tr(R.string.task_no_a11y)
         const val TAG = "MikaTask"
+        /** 内置网页搜索,所有任务共用一个连接池;走设置里的网络代理。 */
+        val webSearchService by lazy { com.wangzan101.mika.core.search.YouSearch() }
     }
 }

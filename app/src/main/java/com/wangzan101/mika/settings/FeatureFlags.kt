@@ -94,6 +94,16 @@ class FeatureFlags(private val prefs: SharedPreferences) {
         prefs.edit().putBoolean(SELF_CONFIG, on).commit()
     }
 
+    /**
+     * 内置网页搜索(web_search,You.com):默认开;关掉后任务里不提供这件工具,照旧在内置浏览器里搜。
+     * 没有 Key 时走 You.com 的免费接口(每天 100 次)。
+     */
+    fun webSearch(): Boolean = prefs.getBoolean(WEB_SEARCH, true)
+
+    fun setWebSearch(on: Boolean) {
+        prefs.edit().putBoolean(WEB_SEARCH, on).commit()
+    }
+
     /** 悬浮胶囊:关闭、有任务时显示(默认)、一直显示。 */
     fun capsuleMode(): CapsuleMode = CapsuleMode.parse(prefs.getString(CAPSULE_MODE, null))
 
@@ -151,6 +161,7 @@ class FeatureFlags(private val prefs: SharedPreferences) {
         private const val MUTE_TARGET = "mute_target"
         private const val OPERATING_PACE = "operating_pace"
         private const val SELF_CONFIG = "self_config"
+        private const val WEB_SEARCH = "web_search"
         private const val THEME_MODE = "theme_mode"
         private const val CAPSULE_MODE = "capsule_mode"
         private const val CAPSULE_SIDE = "capsule_side"

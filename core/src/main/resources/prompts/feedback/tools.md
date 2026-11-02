@@ -597,3 +597,24 @@ Earlier turns in this conversation: {{count}}. turn counts back from the most re
 
 ## history.not_recorded
 No detailed record of this turn is kept any more (only recent tasks keep one); what it ended with is in outcome.
+
+## web_search.empty_query
+query is empty; say what to search for.
+
+## web_search.no_results
+No results for this query. Try other words, or search in the browser.
+
+## web_search.auth
+The search service rejected the API key. Search in the browser instead, and tell the user the key in settings may be wrong.
+
+## web_search.quota
+The free search quota is used up for today. Search in the browser instead.
+
+## web_search.rate_limited
+Too many searches right now; wait about {{seconds}} seconds before searching again, or search in the browser.
+
+## web_search.network
+Could not reach the search service (network or proxy). Search in the browser instead, or try again later.
+
+## web_search.failed
+The search service returned something unexpected. Search in the browser instead.
